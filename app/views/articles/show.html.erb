@@ -12,21 +12,23 @@
 
 <p>
   <strong>Published:</strong>
-  <%= @article.published %>
+  <%= @article.published? %>
 </p>
 <h3>Article has <%=@article.comments.count%> Comments</h3>
 
-<ul>
+<dl>
 <% @article.comments.each do |comment|
-  comment_str = comment.body? ? comment.body.truncate(10) : 'Empty Comment'
+  comment_str = comment.body? ? comment.body : 'Empty Comment'
  %>
 
-  <li><%=link_to comment_str, comment_path(comment) %></li>
-  <% if comment.user %>
-  <li>Created by: <%=comment.user.email%></li>
-  <% end %>
-
+  <dt><%=link_to Comment, comment_path(comment) %></dt>
+  <dd>
+    <% if comment.user %>
+    Created by: <%=comment.user.email%>
+    <% end %>
+    <p><%= comment_str%></p>
+  </dd>
 <% end %>
-</ul>
+</dl>
 <%= link_to 'Edit', edit_article_path(@article) %> |
 <%= link_to 'Back', articles_path %>
