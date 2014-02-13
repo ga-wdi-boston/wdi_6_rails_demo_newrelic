@@ -2,7 +2,7 @@
   User.create!(email: Faker::Internet.email)  
 end
 
-10.times do |i|
+1000.times do |i|
   article = Article.create!(title: Faker::Lorem.word, body: Faker::Lorem.paragraphs(i%10).join(' ') )
   puts "Created Article #{i}"
 
